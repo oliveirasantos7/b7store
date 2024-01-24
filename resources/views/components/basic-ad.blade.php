@@ -23,7 +23,9 @@
 
 <div class="my-ad-item">
 
-  @if (empty($canEdit) && $ad->user_id == Auth::user()->id)
+  <a style="text-decoration: none" href="{{ route('ad_show', ['slug'=>$ad->slug]) }}">
+
+  @if (Auth::user() == true && empty($canEdit) && $ad->user_id == Auth::user()->id)
   <span class="pill my-ad-pill">Meu anuncio</span>
       
   @endif
@@ -32,21 +34,23 @@
       @if (!empty($canEdit))
           
       <div class="ad-buttons">
-        <div class="ad-button">
+        <a href="{{ route('ad_delete', ['id'=>$ad->id]) }}" class="ad-button">
           <img src="/assets/icons/deleteIcon.png" />
-        </div>
-        <div class="ad-button">
+        </a>
+        <a href="" class="ad-button">
           <img src="/assets/icons/editIcon.png" />
-        </div>
+        </a>
       </div>
           
       @endif    
       <div
       class="ad-image"
-      style="background-image: url('{{ $ad->images->where('featured',1)->first()->url }}')"
+      style="background-image: url('{{ $ad->images->where('featured',1)->first()->url ?? '/assets/adsImages/basketball.png' }} ')"
       {{-- style="background-image: url('{{ $featuredImage }}')" --}}
     ></div>
     </div>
     <div class="ad-title">{{ $ad->title }}</div>
     <div class="ad-price">R${{number_format($ad->price,2,',', '.')  }}</div>
+
+    </a>
   </div>

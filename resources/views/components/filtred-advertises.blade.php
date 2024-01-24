@@ -29,12 +29,18 @@
   <div class="ads">
     <div class="ads-title">Anúncios recentes</div>
     <div class="ads-area">
-        {{-- adItem --}}
+
+      @if ($advertisesList->count() > 0)
+           {{-- adItem --}}
         @foreach ($advertisesList as $ad)
-       <x-basic-ad :ad="$ad"/>  
-        @endforeach
-     
-        {{-- adItem --}}
+        <x-basic-ad :ad="$ad"/>  
+         @endforeach
+      
+         {{-- adItem --}}
+      @else
+          <span>Não há anuncios recentes</span>
+      @endif
+       
 
     </div>
   </div>

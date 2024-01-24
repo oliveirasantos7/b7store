@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdController;
+
 
 
 /*
@@ -33,6 +35,11 @@ Route::middleware(['auth'])->group(function(){
     // Route::middleware(['auth'])->get('/state',[AuthController::class, 'StateSelect'])->name('stateSelect');
     Route::post('/stateAction',[AuthController::class, 'StateAction'])->name('stateAction');
     Route::get('/dashboard/my_ads',[DashboardController::class, 'myAds'])->name('my_ads');
+    Route::get('/dashboard/ad/delete/{id}',[AdController::class, 'delete'])->name('ad_delete');
+    Route::get('/ad/{slug}',[AdController::class, 'show'])->name('ad_show');
+
+
+
 });
 
 

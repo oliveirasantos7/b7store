@@ -32,12 +32,32 @@
           </div>
         </div>
         <div class="myAds-area">
+          @if (session('success'))
+
+          <div style="color: green" class="alert alert-succes">
+              {{ session('success') }}
+          </div>
+              
+          @endif
           <h3 class="myAds-title">Meus Anúncios</h3>
+        
           <div class="myAds-ads-area">
+
+            @if ($advertises->count() > 0)
+
+            
 
             @foreach ($advertises as $ad)
             <x-basic-ad :ad="$ad" canEdit="true" />
             @endforeach
+
+            @else
+
+            <span>Voçê ainda não possui anuncios</span>
+                
+            @endif
+
+           
 
             
            
